@@ -1,8 +1,15 @@
 
-ecpilse 项目不能运行
+1、 ecpilse 项目不能运行
 http://stackoverflow.com/questions/24882026/eclipse-project-disappearance-and-an-internal-error-occurred-during-launching%3C/p%3E
 .cproject 文件 删除多余的cconfiguration id 
 
-//可能会解决 Java.lang.UnsatisfiedLinkError nativeSetApkPath (version 3.1.1) 问题
+2、 //可能会解决 Java.lang.UnsatisfiedLinkError nativeSetApkPath (version 3.1.1) 问题
 http://discuss.cocos2d-x.org/t/java-lang-unsatisfiedlinkerror-nativesetapkpath-version-3-1-1/14726
 注意 androidMainfeast 配置 <meta-data android:name="android.app.lib_name" 已和 2.x 版本不同
+
+3、 第三方的.so 文件自动删除问题  1.http://www.2cto.com/kf/201408/329559.html  或 2.批处理命令（可能会拒绝访问） xcopy /x /s /c /r D:\cocos2d-x-3.4\tests\TestGame\proj.android\jni\prebuilt\*.so D:\cocos2d-x-3.4\tests\TestGame\proj.android\libs\armeabi\
+     1.测试通过 copy so 到 prebuild(新建文件夹) 修改android.mk代码添加 
+         include $(CLEAR_VARS)  
+         LOCAL_MODULE := xxxxxx  
+         LOCAL_SRC_FILES := prebuilt/libxxxxxx.so  
+         include $(PREBUILT_SHARED_LIBRARY)
