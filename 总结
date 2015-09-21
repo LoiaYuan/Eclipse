@@ -13,3 +13,4 @@ http://discuss.cocos2d-x.org/t/java-lang-unsatisfiedlinkerror-nativesetapkpath-v
          LOCAL_MODULE := xxxxxx  
          LOCAL_SRC_FILES := prebuilt/libxxxxxx.so  
          include $(PREBUILT_SHARED_LIBRARY)
+     http://jobbole.com/%%30%30
