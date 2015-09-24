@@ -1,0 +1,48 @@
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
+#include "platform/android/jni/JniHelper.h"
+#define CLASS_NAME "com/demo/gamedemo/Method"
+
+void PayHelper::payIAP( int id )
+{
+	JniMethodInfo t;
+
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "payIAP","(I)V"))
+	{		
+		t.env->CallStaticVoidMethod(t.classID,t.methodID,id);
+		t.env->DeleteLocalRef(t.classID);  
+	}
+}
+
+
+extern "C"{
+	
+	JNIEXPORT void JNICALL Java_com_demo_gamedemo_Method_nativeAddCoin
+		(JNIEnv* env, jclass cls,jint payID,jint payType){
+			Message* msg = new Message();
+
+			if(payID==-1){
+				msg->what = MSG_CHARGE_CANCLE;
+			}
+			else if(payID==-2){
+				msg->what = MSG_CHARGE_FAIL;
+			}
+			else if(payID>=0){
+				msg->what = MSG_CHARGE_OK;
+				msg->arg1 = payID;
+			}
+			msg->arg2 = payType;
+
+			MainHandler::getInstance()->sendMessage(msg);
+	}
+};
+
+JNIEXPORT void JNICALL Java_com_wb_gamedemo_PayCall_nativePostPayLog
+	(JNIEnv* env, jclass cls,jint paytype,jstring paycode,jint price,jint result,jstring retcode){
+	string strPaycode = JniHelper::jstring2string(paycode);
+	string strRetcode = JniHelper::jstring2string(retcode);
+	OrderLog::sharedOrderLog()->recordOneLog(paytype,strPaycode,price,result,strRetcode);
+	OrderLog::sharedOrderLog()->postToNet();
+}
+#else
+#endif
