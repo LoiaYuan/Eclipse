@@ -14,4 +14,4 @@ http://discuss.cocos2d-x.org/t/java-lang-unsatisfiedlinkerror-nativesetapkpath-v
          LOCAL_SRC_FILES := prebuilt/libxxxxxx.so  
          include $(PREBUILT_SHARED_LIBRARY)
      http://jobbole.com/%%30%30
-4、 copy so 文件时出现问题 发现libs 下so文件大小又变 ，不知何原因 
+4、 copy so 文件时出现问题 发现libs 下so文件大小又变 ，不知何原因 ，可以编译时等so 文件清空后复制进去，竟然可能出现奇迹，下次不会copy了，可能你重启一次又开始没节操的so出现问题，蹦蹦蹦了。。。
