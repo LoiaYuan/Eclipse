@@ -7,7 +7,8 @@ JniMethodInfo t;
 		t.env->DeleteLocalRef(t.classID);  
 	}
 	
-	2. string  string 
+	。。http://www.cocos.com/doc/tutorial/show?id=1308
+2. string  string 
 	string activity = "";
 
 	JniMethodInfo t;
