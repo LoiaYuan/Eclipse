@@ -1,0 +1,24 @@
+
+1 . bool  void
+JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t,"com/wb/gamedemo/OffersCall","getControlValue","()Z"))
+	{
+		activity = (t.env->CallStaticBooleanMethod(t.classID,t.methodID));
+		t.env->DeleteLocalRef(t.classID);  
+	}
+	
+	2. string  string 
+	string activity = "";
+
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t,"com/wb/gamedemo/OffersCall","getControlValue","(Ljava/lang/String;)Ljava/lang/String;"))
+	{
+		jstring jkey = t.env->NewStringUTF("activity");
+		jstring msg = (jstring)(t.env->CallStaticObjectMethod(t.classID,t.methodID,jkey));
+		t.env->DeleteLocalRef(t.classID);
+		if (msg)
+		{
+			activity = JniHelper::jstring2string(msg);
+		}
+	}
+	if (activity.size() > 0)
