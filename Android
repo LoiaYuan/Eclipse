@@ -1,0 +1,18 @@
+public void gameExit()
++	{
++		AppActivity game = (AppActivity)AppActivity.getContext();
++		game.runOnUiThread(new Runnable()    
++        {    
++            public void run()    
++            {    
++            	DKPlatform.getInstance().bdgameExit(BaiduAPI.mActivity, new IDKSDKCallBack() {
++        			@Override
++        			public void onResponse(String paramString) {
++        			//	mActivity.finish();
++        				OffersCall.nativeEndGame();
++        				android.os.Process.killProcess(android.os.Process.myPid());
++        			}
++        		}); 
++            }    
++      
++        });   
