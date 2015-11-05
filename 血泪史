@@ -1,0 +1,10 @@
+
+1 。 下面这段代码 在安卓会闪退   错误码 fetal 11       cocos2d::JniHelper:。。。。。
+http://stackoverflow.com/questions/25091212/cocos2d-x-crash-when-adding-code-to-android-mk
+//const Vec2 _position_models[3] = {
+//
+//	Vec2(DevUnit(90),DevUnit(120)),
+//	Vec2(DevUnit(240),DevUnit(120)),
+//	Vec2(DevUnit(390),DevUnit(120))
+//
+//};
